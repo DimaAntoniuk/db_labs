@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pmd-cpd>
+   <duplication lines="20" tokens="111">
+      <file line="21"
+            path="E:\projects\db_labs\Lab4\src\main\java\ua\lviv\iot\DAO\Output.java"/>
+      <file line="21"
+            path="E:\projects\db_labs\Lab4\src\main\java\ua\lviv\iot\DAO\Price.java"/>
+      <file line="20"
+            path="E:\projects\db_labs\Lab4\src\main\java\ua\lviv\iot\DAO\Station.java"/>
+      <codefragment><![CDATA[    public void findAll() throws SQLException {
+        Connection connection = ConnectionManager.getConnection();
+        try (Statement statement = connection.createStatement()) {
+            try (ResultSet resultSet = statement.executeQuery(FIND_ALL)) {
+                print(resultSet);
+            }
+        }
+    }
+
+    public void findById(Integer id) throws SQLException {
+        Connection connection = ConnectionManager.getConnection();
+        try (PreparedStatement ps = connection.prepareStatement(FIND_BY_ID)) {
+            ps.setInt(1, id);
+            try (ResultSet resultSet = ps.executeQuery()) {
+                print(resultSet);
+            }
+        }
+    }
+
+    public void create(Integer powerPerHour, Date timeStart, Date timeEnd, Integer stationId, Integer priceId) throws SQLException {]]></codefragment>
+   </duplication>
+   <duplication lines="20" tokens="111">
+      <file line="19"
+            path="E:\projects\db_labs\Lab4\src\main\java\ua\lviv\iot\DAO\Owner.java"/>
+      <file line="20"
+            path="E:\projects\db_labs\Lab4\src\main\java\ua\lviv\iot\DAO\Panel.java"/>
+      <codefragment><![CDATA[    public void findAll() throws SQLException {
+        Connection connection = ConnectionManager.getConnection();
+        try (Statement statement = connection.createStatement()) {
+            try (ResultSet resultSet = statement.executeQuery(FIND_ALL)) {
+                print(resultSet);
+            }
+        }
+    }
+
+    public void findById(Integer id) throws SQLException {
+        Connection connection = ConnectionManager.getConnection();
+        try (PreparedStatement ps = connection.prepareStatement(FIND_BY_ID)) {
+            ps.setInt(1, id);
+            try (ResultSet resultSet = ps.executeQuery()) {
+                print(resultSet);
+            }
+        }
+    }
+
+    public void create(String firstName, String lastName) throws SQLException {]]></codefragment>
+   </duplication>
+   <duplication lines="20" tokens="110">
+      <file line="21"
+            path="E:\projects\db_labs\Lab4\src\main\java\ua\lviv\iot\DAO\Output.java"/>
+      <file line="19"
+            path="E:\projects\db_labs\Lab4\src\main\java\ua\lviv\iot\DAO\Owner.java"/>
+      <file line="20"
+            path="E:\projects\db_labs\Lab4\src\main\java\ua\lviv\iot\DAO\Panel.java"/>
+      <file line="21"
+            path="E:\projects\db_labs\Lab4\src\main\java\ua\lviv\iot\DAO\PanelData.java"/>
+      <file line="21"
+            path="E:\projects\db_labs\Lab4\src\main\java\ua\lviv\iot\DAO\Price.java"/>
+      <file line="20"
+            path="E:\projects\db_labs\Lab4\src\main\java\ua\lviv\iot\DAO\Station.java"/>
+      <codefragment><![CDATA[    public void findAll() throws SQLException {
+        Connection connection = ConnectionManager.getConnection();
+        try (Statement statement = connection.createStatement()) {
+            try (ResultSet resultSet = statement.executeQuery(FIND_ALL)) {
+                print(resultSet);
+            }
+        }
+    }
+
+    public void findById(Integer id) throws SQLException {
+        Connection connection = ConnectionManager.getConnection();
+        try (PreparedStatement ps = connection.prepareStatement(FIND_BY_ID)) {
+            ps.setInt(1, id);
+            try (ResultSet resultSet = ps.executeQuery()) {
+                print(resultSet);
+            }
+        }
+    }
+
+    public void create(Integer powerPerHour, Date timeStart, Date timeEnd, Integer stationId, Integer priceId) throws SQLException {]]></codefragment>
+   </duplication>
+   <duplication lines="20" tokens="102">
+      <file line="60"
+            path="E:\projects\db_labs\Lab4\src\main\java\ua\lviv\iot\DAO\Output.java"/>
+      <file line="60"
+            path="E:\projects\db_labs\Lab4\src\main\java\ua\lviv\iot\DAO\PanelData.java"/>
+      <codefragment><![CDATA[            ps.setInt(5, priceId);
+            ps.setInt(6, id);
+
+            ps.executeUpdate();
+        }
+    }
+
+    public void delete(Integer id) throws SQLException {
+        Connection connection = ConnectionManager.getConnection();
+        try (PreparedStatement ps = connection.prepareStatement(DELETE)) {
+            ps.setInt(1, id);
+
+            ps.executeUpdate();
+        }
+    }
+
+    private void print(ResultSet resultSet) throws SQLException {
+        while (resultSet.next()) {
+            System.out.print("{id: " + resultSet.getInt("id"));
+            System.out.print(", power_per_hour: " + resultSet.getString("power_per_hour"));]]></codefragment>
+   </duplication>
+   <duplication lines="20" tokens="102">
+      <file line="55"
+            path="E:\projects\db_labs\Lab4\src\main\java\ua\lviv\iot\DAO\Panel.java"/>
+      <file line="56"
+            path="E:\projects\db_labs\Lab4\src\main\java\ua\lviv\iot\DAO\Price.java"/>
+      <file line="55"
+            path="E:\projects\db_labs\Lab4\src\main\java\ua\lviv\iot\DAO\Station.java"/>
+      <codefragment><![CDATA[            ps.setInt(3, stationId);
+            ps.setInt(4, id);
+
+            ps.executeUpdate();
+        }
+    }
+
+    public void delete(Integer id) throws SQLException {
+        Connection connection = ConnectionManager.getConnection();
+        try (PreparedStatement ps = connection.prepareStatement(DELETE)) {
+            ps.setInt(1, id);
+
+            ps.executeUpdate();
+        }
+    }
+
+    private void print(ResultSet resultSet) throws SQLException {
+        while (resultSet.next()) {
+            System.out.print("{id: " + resultSet.getInt("id"));
+            System.out.print(", type: " + resultSet.getString("type"));]]></codefragment>
+   </duplication>
+</pmd-cpd>

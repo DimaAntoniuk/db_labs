@@ -10,13 +10,13 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Date;
 
-public class Pannel_data {
-    private static final String FIND_ALL = "SELECT * FROM `pannel`";
-    private static final String FIND_BY_ID = "SELECT * FROM `pannel` WHERE id=?";
-    private static final String CREATE = "INSERT INTO `pannel` (id, `type`, capacity, station_id)" +
-            " VALUES (?, ?, ?, ?)";
-    private static final String UPDATE = "UPDATE `pannel` SET `type`=?, capacity=?, station_id=? WHERE id=?";
-    private static final String DELETE = "DELETE FROM `pannel` WHERE id=?";
+public class PanelData {
+    private static final String FIND_ALL = "SELECT * FROM `panel_data`";
+    private static final String FIND_BY_ID = "SELECT * FROM `panel_data` WHERE id=?";
+    private static final String CREATE = "INSERT INTO `panel_data` (`date`, angle, power, chrge_level, panel_id)" +
+            " VALUES (?, ?, ?, ?, ?)";
+    private static final String UPDATE = "UPDATE `panel_data` SET `date`=?, angle=?, power=?, chrge_level=?, panel_id=? WHERE id=?";
+    private static final String DELETE = "DELETE FROM `panel_data` WHERE id=?";
 
     public void findAll() throws SQLException {
         Connection connection = ConnectionManager.getConnection();
@@ -37,25 +37,28 @@ public class Pannel_data {
         }
     }
 
-    public void create(Integer id, String type, Integer capacity, Integer stationId) throws SQLException {
+    public void create(Date date, Integer angle, Integer power, Integer chargeLevel, Integer panelId) throws SQLException {
         Connection connection = ConnectionManager.getConnection();
         try (PreparedStatement ps = connection.prepareStatement(CREATE)) {
-            ps.setInt(1, id);
-            ps.setString(2, type);
-            ps.setInt(3, capacity);
-            ps.setInt(4, stationId);
+            ps.setDate(1, date);
+            ps.setInt(2, angle);
+            ps.setInt(3, power);
+            ps.setInt(4, chargeLevel);
+            ps.setInt(5, panelId);
 
             ps.executeUpdate();
         }
     }
 
-    public void update(Integer id, String type, Integer capacity, Integer stationId) throws SQLException {
+    public void update(Integer id, Date date, Integer angle, Integer power, Integer chargeLevel, Integer panelId) throws SQLException {
         Connection connection = ConnectionManager.getConnection();
         try (PreparedStatement ps = connection.prepareStatement(UPDATE)) {
-            ps.setInt(1, id);
-            ps.setString(2, type);
-            ps.setInt(3, capacity);
-            ps.setInt(4, stationId);
+            ps.setDate(1, date);
+            ps.setInt(2, angle);
+            ps.setInt(3, power);
+            ps.setInt(4, chargeLevel);
+            ps.setInt(5, panelId);
+            ps.setInt(6, id);
 
             ps.executeUpdate();
         }
@@ -73,9 +76,11 @@ public class Pannel_data {
     private void print(ResultSet resultSet) throws SQLException {
         while (resultSet.next()) {
             System.out.print("{id: " + resultSet.getInt("id"));
-            System.out.print(", type: " + resultSet.getString("type"));
-            System.out.print(", capacity: " + resultSet.getInt("capacity"));
-            System.out.print(", stationId: " + resultSet.getInt("stationId"));
+            System.out.print(", date: " + resultSet.getDate("date"));
+            System.out.print(", angle: " + resultSet.getInt("angle"));
+            System.out.print(", power: " + resultSet.getInt("power"));
+            System.out.print(", charge_level: " + resultSet.getInt("charge_level"));
+            System.out.print(", panel_id: " + resultSet.getInt("panel_id"));
             System.out.println("}");
         }
     }

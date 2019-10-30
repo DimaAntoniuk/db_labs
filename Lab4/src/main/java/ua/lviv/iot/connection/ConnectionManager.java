@@ -7,8 +7,8 @@ import java.sql.SQLException;
 public class ConnectionManager {
     private static final String URL = "jdbc:mysql://localhost:3306/antoniuk_db" +
             "?serverTimezone=UTC&useSSL=false&allowPublicKeyRetrieval=true";
-    private static final String USER = "root";
-    private static final String PASSWORD = "greenhaker-09";
+    private static final String USER = "iotuser";
+    private static final String PASSWORD = "password";
     private static Connection connection = null;
 
     public static Connection getConnection() {

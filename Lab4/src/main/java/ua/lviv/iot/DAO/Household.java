@@ -11,8 +11,8 @@ import java.sql.Statement;
 public class Household {
     private static final String FIND_ALL = "SELECT * FROM `household`";
     private static final String FIND_BY_ID = "SELECT * FROM `household` WHERE id=?";
-    private static final String CREATE = "INSERT INTO `household` (id, `name`)" +
-            " VALUES (?, ?)";
+    private static final String CREATE = "INSERT INTO `household` (`name`)" +
+            " VALUES (?)";
     private static final String UPDATE = "UPDATE `household` SET `name`=? WHERE id=?";
     private static final String DELETE = "DELETE FROM `household` WHERE id=?";
 
@@ -21,7 +21,11 @@ public class Household {
         try (Statement statement = connection.createStatement()) {
             try (ResultSet resultSet = statement.executeQuery(FIND_ALL)) {
                 print(resultSet);
+            } catch (Exception e) {
+                System.out.println("Exception in print: " + e);
             }
+        } catch (Exception e) {
+            System.out.println("Exception in statement: " + e);
         }
     }
 
@@ -35,11 +39,10 @@ public class Household {
         }
     }
 
-    public void create(Integer id, String name) throws SQLException {
+    public void create(String name) throws SQLException {
         Connection connection = ConnectionManager.getConnection();
         try (PreparedStatement ps = connection.prepareStatement(CREATE)) {
-            ps.setInt(1, id);
-            ps.setString(2, name);
+            ps.setString(1, name);
 
             ps.executeUpdate();
         }
@@ -48,8 +51,8 @@ public class Household {
     public void update(Integer id, String name) throws SQLException {
         Connection connection = ConnectionManager.getConnection();
         try (PreparedStatement ps = connection.prepareStatement(UPDATE)) {
-            ps.setInt(1, id);
-            ps.setString(2, name);
+            ps.setString(1, name);
+            ps.setInt(2, id);
 
             ps.executeUpdate();
         }

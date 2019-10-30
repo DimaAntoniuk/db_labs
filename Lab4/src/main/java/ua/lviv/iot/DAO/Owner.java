@@ -10,10 +10,10 @@ import java.sql.Statement;
 
 public class Owner {
     private static final String FIND_ALL = "SELECT * FROM `owner`";
-    private static final String FIND_BY_ID = "SELECT * FROM `owner` WHERE client_id=?";
-    private static final String CREATE = "INSERT INTO `owner` (id, first_name, last_name)" +
-            " VALUES (?, ?, ?)";
-    private static final String UPDATE = "UPDATE `owner` SET username=?, password=?, email=? WHERE client_id=?";
+    private static final String FIND_BY_ID = "SELECT * FROM `owner` WHERE id=?";
+    private static final String CREATE = "INSERT INTO `owner` (first_name, last_name)" +
+            " VALUES (?, ?)";
+    private static final String UPDATE = "UPDATE `owner` SET first_name=?, last_name=? WHERE id=?";
     private static final String DELETE = "DELETE FROM `owner` WHERE id=?";
 
     public void findAll() throws SQLException {
@@ -35,12 +35,11 @@ public class Owner {
         }
     }
 
-    public void create(Integer id, String firstName, String lastName) throws SQLException {
+    public void create(String firstName, String lastName) throws SQLException {
         Connection connection = ConnectionManager.getConnection();
         try (PreparedStatement ps = connection.prepareStatement(CREATE)) {
-            ps.setInt(1, id);
-            ps.setString(2, firstName);
-            ps.setString(3, lastName);
+            ps.setString(1, firstName);
+            ps.setString(2, lastName);
 
             ps.executeUpdate();
         }
@@ -51,7 +50,7 @@ public class Owner {
         try (PreparedStatement ps = connection.prepareStatement(UPDATE)) {
             ps.setString(1, firstName);
             ps.setString(2, lastName);
-            ps.setInt(4, id);
+            ps.setInt(3, id);
 
             ps.executeUpdate();
         }

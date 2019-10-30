@@ -8,15 +8,14 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.sql.Date;
 
-public class Pannel {
-    private static final String FIND_ALL = "SELECT * FROM `pannel`";
-    private static final String FIND_BY_ID = "SELECT * FROM `pannel` WHERE id=?";
-    private static final String CREATE = "INSERT INTO `pannel` (id, `type`, capacity, station_id)" +
-            " VALUES (?, ?, ?, ?)";
-    private static final String UPDATE = "UPDATE `pannel` SET `type`=?, capacity=?, station_id=? WHERE id=?";
-    private static final String DELETE = "DELETE FROM `pannel` WHERE id=?";
+public class Panel {
+    private static final String FIND_ALL = "SELECT * FROM `panel`";
+    private static final String FIND_BY_ID = "SELECT * FROM `panel` WHERE id=?";
+    private static final String CREATE = "INSERT INTO `panel` (`type`, capacity, station_id)" +
+            " VALUES (?, ?, ?)";
+    private static final String UPDATE = "UPDATE `panel` SET `type`=?, capacity=?, station_id=? WHERE id=?";
+    private static final String DELETE = "DELETE FROM `panel` WHERE id=?";
 
     public void findAll() throws SQLException {
         Connection connection = ConnectionManager.getConnection();
@@ -37,13 +36,12 @@ public class Pannel {
         }
     }
 
-    public void create(Integer id, String type, Integer capacity, Integer stationId) throws SQLException {
+    public void create(String type, Integer capacity, Integer stationId) throws SQLException {
         Connection connection = ConnectionManager.getConnection();
         try (PreparedStatement ps = connection.prepareStatement(CREATE)) {
-            ps.setInt(1, id);
-            ps.setString(2, type);
-            ps.setInt(3, capacity);
-            ps.setInt(4, stationId);
+            ps.setString(1, type);
+            ps.setInt(2, capacity);
+            ps.setInt(3, stationId);
 
             ps.executeUpdate();
         }
@@ -52,10 +50,10 @@ public class Pannel {
     public void update(Integer id, String type, Integer capacity, Integer stationId) throws SQLException {
         Connection connection = ConnectionManager.getConnection();
         try (PreparedStatement ps = connection.prepareStatement(UPDATE)) {
-            ps.setInt(1, id);
-            ps.setString(2, type);
-            ps.setInt(3, capacity);
-            ps.setInt(4, stationId);
+            ps.setString(1, type);
+            ps.setInt(2, capacity);
+            ps.setInt(3, stationId);
+            ps.setInt(4, id);
 
             ps.executeUpdate();
         }
@@ -75,7 +73,7 @@ public class Pannel {
             System.out.print("{id: " + resultSet.getInt("id"));
             System.out.print(", type: " + resultSet.getString("type"));
             System.out.print(", capacity: " + resultSet.getInt("capacity"));
-            System.out.print(", stationId: " + resultSet.getInt("stationId"));
+            System.out.print(", station_id: " + resultSet.getInt("station_id"));
             System.out.println("}");
         }
     }

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle version="6.18">
+<file name="E:\projects\db_labs\Lab4\src\main\java\ua\lviv\iot\Application.java">
+</file>
+<file name="E:\projects\db_labs\Lab4\src\main\java\ua\lviv\iot\connection\ConnectionManager.java">
+</file>
+<file name="E:\projects\db_labs\Lab4\src\main\java\ua\lviv\iot\controller\Controller.java">
+</file>
+<file name="E:\projects\db_labs\Lab4\src\main\java\ua\lviv\iot\controller\ControllerImpl.java">
+<error line="3" severity="error" message="Using the &apos;.*&apos; form of import should be avoided - ua.lviv.iot.DAO.*." source="com.puppycrawl.tools.checkstyle.checks.imports.AvoidStarImportCheck"/>
+</file>
+<file name="E:\projects\db_labs\Lab4\src\main\java\ua\lviv\iot\DAO\Household.java">
+</file>
+<file name="E:\projects\db_labs\Lab4\src\main\java\ua\lviv\iot\DAO\Output.java">
+</file>
+<file name="E:\projects\db_labs\Lab4\src\main\java\ua\lviv\iot\DAO\Owner.java">
+</file>
+<file name="E:\projects\db_labs\Lab4\src\main\java\ua\lviv\iot\DAO\OwnerHasStation.java">
+</file>
+<file name="E:\projects\db_labs\Lab4\src\main\java\ua\lviv\iot\DAO\Panel.java">
+</file>
+<file name="E:\projects\db_labs\Lab4\src\main\java\ua\lviv\iot\DAO\PanelData.java">
+</file>
+<file name="E:\projects\db_labs\Lab4\src\main\java\ua\lviv\iot\DAO\Price.java">
+</file>
+<file name="E:\projects\db_labs\Lab4\src\main\java\ua\lviv\iot\DAO\Station.java">
+</file>
+<file name="E:\projects\db_labs\Lab4\src\main\java\ua\lviv\iot\DAO\StationHasHousehold.java">
+<error line="5" severity="error" message="Using the &apos;.*&apos; form of import should be avoided - java.sql.*." source="com.puppycrawl.tools.checkstyle.checks.imports.AvoidStarImportCheck"/>
+</file>
+<file name="E:\projects\db_labs\Lab4\src\main\java\ua\lviv\iot\view\MyView.java">
+</file>
+</checkstyle>
