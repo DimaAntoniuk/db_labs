@@ -1,0 +1,24 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+        <property name="connection.url">jdbc:mysql://localhost:3306/film_db?serverTimezone=Europe/Kiev</property>
+        <property name="connection.driver_class">com.mysql.cj.jdbc.Driver</property>
+        <property name="hibernate.connection.username">iotuser</property>
+        <property name="hibernate.connection.password">password</property>
+        <mapping class="ua.lviv.iot.model.BoxOfficeEntity"/>
+        <mapping class="ua.lviv.iot.model.CountryEntity"/>
+        <mapping class="ua.lviv.iot.model.DirectorEntity"/>
+        <mapping class="ua.lviv.iot.model.FilmEntity"/>
+        <mapping class="ua.lviv.iot.model.FilmDirectorEntity"/>
+        <mapping class="ua.lviv.iot.model.FilmGenreEntity"/>
+        <mapping class="ua.lviv.iot.model.GenreEntity"/>
+        <mapping class="ua.lviv.iot.model.RoleEntity"/>
+        <mapping class="ua.lviv.iot.model.StarEntity"/>
+
+        <!-- DB schema will be updated if needed -->
+        <!-- <property name="hibernate.hbm2ddl.auto">update</property> -->
+    </session-factory>
+</hibernate-configuration>

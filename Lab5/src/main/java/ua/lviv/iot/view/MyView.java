@@ -18,16 +18,16 @@ public class MyView {
     }
 
     public void show() throws SQLException {
-        String menuPoint;
+        String menuKey;
         do {
             System.out.println("Press ENTER key to continue...");
             new Scanner(System.in).nextLine();
 
             outputMenu();
             System.out.print("\nPlease, select menu point: ");
-            menuPoint = new Scanner(System.in).nextLine().toUpperCase();
+            menuKey = new Scanner(System.in).nextLine().toUpperCase();
 
-            switch (menuPoint) {
+            switch (menuKey) {
                 case "1":
                     workWithHousehold();
                     break;
@@ -61,7 +61,7 @@ public class MyView {
                 default:
                     System.out.println("Menu point does not exist!");
             }
-        } while (!menuPoint.equals("Q"));
+        } while (!menuKey.equals("Q"));
     }
 
     private void outputMenu() {
