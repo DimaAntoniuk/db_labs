@@ -3,7 +3,6 @@ package ua.lviv.iot.model;
 import org.hibernate.Session;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.query.Query;
-import ua.lviv.iot.DAO.Owner;
 
 import javax.persistence.*;
 import java.util.LinkedList;
@@ -23,12 +22,6 @@ public class OwnerEntity {
     public OwnerEntity(String firstName, String lastName) {
         this.firstName = firstName;
         this.lastName = lastName;
-
-        Session session = new Configuration().configure().buildSessionFactory().openSession();
-        Query query = session.createQuery("SELECT stationId FROM OwnerHasStationEntity AS ohs WHERE ohs.ownerId = :id");
-        query.setParameter("id", this.id);
-        stations = query.list();
-        session.close();
     }
 
     @Id
@@ -69,7 +62,6 @@ public class OwnerEntity {
     public void setStations(List<StationEntity> stations) {
         this.stations = stations;
     }
-
 
     @Override
     public boolean equals(Object o) {

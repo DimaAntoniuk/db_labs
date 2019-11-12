@@ -1,93 +1,58 @@
 package ua.lviv.iot.services;
 
-import java.sql.Date;
-import java.sql.SQLException;
-import java.sql.Time;
+import ua.lviv.iot.model.*;
+
 
 public interface BusinessLogic {
-    void findAllHousehold() throws SQLException;
+    void findAllHousehold();
+    void findHouseholdById(Integer id);
+    void createHousehold(HouseholdEntity newItem);
+    void updateHousehold(Integer id, HouseholdEntity newItem);
+    void deleteHousehold(Integer id);
 
-    void findHouseholdById(Integer id) throws SQLException;
+    void findAllOutput();
+    void findOutputById(Integer id);
+    void createOutput(OutputEntity newItem);
+    void updateOutput(Integer id, OutputEntity newItem);
+    void deleteOutput(Integer id);
 
-    void createHousehold(String name) throws SQLException;
+    void findAllOwner();
+    void findOwnerById(Integer id);
+    void createOwner(OwnerEntity newItem);
+    void updateOwner(Integer id, OwnerEntity newItem);
+    void deleteOwner(Integer id);
 
-    void updateHousehold(Integer id, String name) throws SQLException;
+    void findAllPanel();
+    void findPanelById(Integer id);
+    void createPanel(PanelEntity newItem);
+    void updatePanel(Integer id, PanelEntity newItem);
+    void deletePanel(Integer id);
 
-    void deleteHousehold(Integer id) throws SQLException;
+    void findAllPanelData();
+    void findPanelDataById(Integer id);
+    void createPanelData(PanelDataEntity newItem);
+    void updatePanelData(Integer id, PanelDataEntity newItem);
+    void deletePanelData(Integer id);
 
-    void findAllOutput() throws SQLException;
+    void findAllPrice();
+    void findPriceById(Integer id);
+    void createPrice(PriceEntity newItem);
+    void updatePrice(Integer id, PriceEntity newItem);
+    void deletePrice(Integer id);
 
-    void findOutputById(Integer id) throws SQLException;
+    void findAllStation();
+    void findStationById(Integer id);
+    void createStation(StationEntity newItem);
+    void updateStation(Integer id, StationEntity newItem);
+    void deleteStation(Integer id);
 
-    void createOutput(Integer powerPerHour, Date timeStart, Date timeEnd, Integer stationId, Integer priceId) throws SQLException;
+    void findAllOwnerHasStation();
+    void findOwnerHasStationById(Integer ownerId, Integer stationId);
+    void createOwnerHasStation(OwnerHasStationEntity newItem);
+    void deleteOwnerHasStation(Integer ownerId, Integer stationId);
 
-    void updateOutput(Integer id, Integer powerPerHour, Date timeStart, Date timeEnd, Integer stationId, Integer priceId) throws SQLException;
-
-    void deleteOutput(Integer id) throws SQLException;
-
-    void findAllOwner() throws SQLException;
-
-    void findOwnerById(Integer id) throws SQLException;
-
-    void createOwner(String firstName, String lastName) throws SQLException;
-
-    void updateOwner(Integer id, String firstName, String lastName) throws SQLException;
-
-    void deleteOwner(Integer id) throws SQLException;
-
-    void findAllPanel() throws SQLException;
-
-    void findPanelById(Integer id) throws SQLException;
-
-    void createPanel(String type, Integer capacity, Integer stationId) throws SQLException;
-
-    void updatePanel(Integer id, String type, Integer capacity, Integer stationId) throws SQLException;
-
-    void deletePanel(Integer id) throws SQLException;
-
-    void findAllPanelData() throws SQLException;
-
-    void findPanelDataById(Integer id) throws SQLException;
-
-    void createPanelData(Date date, Integer angle, Integer power, Integer chargeLevel, Integer panelId) throws SQLException;
-
-    void updatePanelData(Integer id, Date date, Integer angle, Integer power, Integer chargeLevel, Integer panelId) throws SQLException;
-
-    void deletePanelData(Integer id) throws SQLException;
-
-    void findAllPrice() throws SQLException;
-
-    void findPriceById(Integer id) throws SQLException;
-
-    void createPrice(Integer value, Time timeOfPriceBegin, Time timeOfPriceEnd) throws SQLException;
-
-    void updatePrice(Integer id, Integer value, Time timeOfPriceBegin, Time timeOfPriceEnd) throws SQLException;
-
-    void deletePrice(Integer id) throws SQLException;
-
-    void findAllStation() throws SQLException;
-
-    void findStationById(Integer id) throws SQLException;
-
-    void createStation(Integer numberOfPanels, String address, Integer timeOfUsage) throws SQLException;
-
-    void updateStation(Integer id, Integer numberOfPanels, String address, Integer timeOfUsage) throws SQLException;
-
-    void deleteStation(Integer id) throws SQLException;
-
-    void findAllOwnerHasStation() throws SQLException;
-
-    void findOwnerHasStationById(Integer ownerId, Integer stationId) throws SQLException;
-
-    void createOwnerHasStation(Integer ownerId, Integer stationId) throws SQLException;
-
-    void deleteOwnerHasStation(Integer ownerId, Integer stationId) throws SQLException;
-
-    void findAllStationHasHousehold() throws SQLException;
-
-    void findStationHasHouseholdById(Integer stationId, Integer householdId) throws SQLException;
-
-    void createStationHasHousehold(Integer stationId, Integer householdId) throws SQLException;
-
-    void deleteStationHasHousehold(Integer stationId, Integer householdId) throws SQLException;
+    void findAllStationHasHousehold();
+    void findStationHasHouseholdById(Integer stationId, Integer householdId);
+    void createStationHasHousehold(StationHasHouseholdEntity newItem);
+    void deleteStationHasHousehold(Integer stationId, Integer householdId) ;
 }

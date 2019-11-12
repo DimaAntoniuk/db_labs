@@ -1,8 +1,9 @@
 package ua.lviv.iot.model;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
-public class StationHasHouseholdEntityPK {
+public class StationHasHouseholdEntityPK implements Serializable {
     private int stationId;
     private int householdId;
 

@@ -1,246 +1,243 @@
 package ua.lviv.iot.services;
 
 import ua.lviv.iot.DAO.*;
-
-import java.sql.Date;
-import java.sql.SQLException;
-import java.sql.Time;
+import ua.lviv.iot.model.*;
 
 public class BusinessLogicImpl implements BusinessLogic {
-    private static Household household;
-    private static Output output;
-    private static Owner owner;
-    private static Panel panel;
-    private static PanelData panelData;
-    private static Price price;
-    private static Station station;
-    private static OwnerHasStation ownerHasStation;
-    private static StationHasHousehold stationHasHousehold;
+    private static HouseholdDAO household;
+    private static OutputDAO output;
+    private static OwnerDAO owner;
+    private static PanelDAO panel;
+    private static PanelDataDAO panelData;
+    private static PriceDAO price;
+    private static StationDAO station;
+    private static OwnerHasStationDAO ownerHasStation;
+    private static StationHasHouseholdDAO stationHasHousehold;
 
     public BusinessLogicImpl() {
-        household = new Household();
-        output = new Output();
-        owner = new Owner();
-        panel = new Panel();
-        panelData = new PanelData();
-        price = new Price();
-        station = new Station();
-        ownerHasStation = new OwnerHasStation();
-        stationHasHousehold = new StationHasHousehold();
+        household = new HouseholdDAO();
+        output = new OutputDAO();
+        owner = new OwnerDAO();
+        panel = new PanelDAO();
+        panelData = new PanelDataDAO();
+        price = new PriceDAO();
+        station = new StationDAO();
+        ownerHasStation = new OwnerHasStationDAO();
+        stationHasHousehold = new StationHasHouseholdDAO();
     }
 
     @Override
-    public void findAllHousehold() throws SQLException {
+    public void findAllHousehold() {
         household.findAll();
     }
 
     @Override
-    public void findHouseholdById(Integer id) throws SQLException {
+    public void findHouseholdById(Integer id) {
         household.findById(id);
     }
 
     @Override
-    public void createHousehold(String name) throws SQLException {
-        household.create(name);
+    public void createHousehold(HouseholdEntity newItem) {
+        household.create(newItem);
     }
 
     @Override
-    public void updateHousehold(Integer id, String name) throws SQLException {
-        household.update(id, name);
+    public void updateHousehold(Integer id, HouseholdEntity newItem) {
+        household.update(id, newItem);
     }
 
     @Override
-    public void deleteHousehold(Integer id) throws SQLException {
+    public void deleteHousehold(Integer id) {
         household.delete(id);
     }
 
     @Override
-    public void findAllOutput() throws SQLException {
+    public void findAllOutput() {
         output.findAll();
     }
 
     @Override
-    public void findOutputById(Integer id) throws SQLException {
+    public void findOutputById(Integer id) {
         output.findById(id);
     }
 
     @Override
-    public void createOutput(Integer powerPerHour, Date timeStart, Date timeEnd, Integer stationId, Integer priceId) throws SQLException {
-        output.create(powerPerHour, timeStart, timeEnd, stationId, priceId);
+    public void createOutput(OutputEntity newItem) {
+        output.create(newItem);
     }
 
     @Override
-    public void updateOutput(Integer id, Integer powerPerHour, Date timeStart, Date timeEnd, Integer stationId, Integer priceId) throws SQLException {
-        output.update(id, powerPerHour, timeStart, timeEnd, stationId, priceId);
+    public void updateOutput(Integer id, OutputEntity newItem) {
+        output.update(id, newItem);
     }
 
     @Override
-    public void deleteOutput(Integer id) throws SQLException {
+    public void deleteOutput(Integer id) {
         output.delete(id);
     }
 
     @Override
-    public void findAllOwner() throws SQLException {
+    public void findAllOwner() {
         owner.findAll();
     }
 
     @Override
-    public void findOwnerById(Integer id) throws SQLException {
+    public void findOwnerById(Integer id) {
         owner.findById(id);
     }
 
     @Override
-    public void createOwner(String firstName, String lastName) throws SQLException {
-        owner.create(firstName, lastName);
+    public void createOwner(OwnerEntity newItem) {
+        owner.create(newItem);
     }
 
     @Override
-    public void updateOwner(Integer id, String firstName, String lastName) throws SQLException {
-        owner.update(id, firstName, lastName);
+    public void updateOwner(Integer id, OwnerEntity newItem) {
+        owner.update(id, newItem);
     }
 
     @Override
-    public void deleteOwner(Integer id) throws SQLException {
+    public void deleteOwner(Integer id) {
         owner.delete(id);
     }
 
     @Override
-    public void findAllPanel() throws SQLException {
+    public void findAllPanel() {
         panel.findAll();
     }
 
     @Override
-    public void findPanelById(Integer id) throws SQLException {
+    public void findPanelById(Integer id) {
         panel.findById(id);
     }
 
     @Override
-    public void createPanel(String type, Integer capacity, Integer stationId) throws SQLException {
-        panel.create(type, capacity, stationId);
+    public void createPanel(PanelEntity newItem) {
+        panel.create(newItem);
     }
 
     @Override
-    public void updatePanel(Integer id, String type, Integer capacity, Integer stationId) throws SQLException {
-        panel.update(id, type, capacity, stationId);
+    public void updatePanel(Integer id, PanelEntity newItem) {
+        panel.update(id, newItem);
     }
 
     @Override
-    public void deletePanel(Integer id) throws SQLException {
+    public void deletePanel(Integer id) {
         panel.delete(id);
     }
 
     @Override
-    public void findAllPanelData() throws SQLException {
+    public void findAllPanelData() {
         panelData.findAll();
     }
 
     @Override
-    public void findPanelDataById(Integer id) throws SQLException {
+    public void findPanelDataById(Integer id) {
         panelData.findById(id);
     }
 
     @Override
-    public void createPanelData(Date date, Integer angle, Integer power, Integer chargeLevel, Integer panelId) throws SQLException {
-        panelData.create(date, angle, power, chargeLevel, panelId);
+    public void createPanelData(PanelDataEntity newItem) {
+        panelData.create(newItem);
     }
 
     @Override
-    public void updatePanelData(Integer id, Date date, Integer angle, Integer power, Integer chargeLevel, Integer panelId) throws SQLException {
-        panelData.update(id, date, angle, power, chargeLevel, panelId);
+    public void updatePanelData(Integer id, PanelDataEntity newItem) {
+        panelData.update(id, newItem);
     }
 
     @Override
-    public void deletePanelData(Integer id) throws SQLException {
+    public void deletePanelData(Integer id) {
         panelData.delete(id);
     }
 
     @Override
-    public void findAllPrice() throws SQLException {
+    public void findAllPrice() {
         price.findAll();
     }
 
     @Override
-    public void findPriceById(Integer id) throws SQLException {
+    public void findPriceById(Integer id) {
         price.findById(id);
     }
 
     @Override
-    public void createPrice(Integer value, Time timeOfPriceBegin, Time timeOfPriceEnd) throws SQLException {
-        price.create(value, timeOfPriceBegin, timeOfPriceEnd);
+    public void createPrice(PriceEntity newItem) {
+        price.create(newItem);
     }
 
     @Override
-    public void updatePrice(Integer id, Integer value, Time timeOfPriceBegin, Time timeOfPriceEnd) throws SQLException {
-        price.update(id, value, timeOfPriceBegin, timeOfPriceEnd);
+    public void updatePrice(Integer id, PriceEntity newItem) {
+        price.update(id, newItem);
     }
 
     @Override
-    public void deletePrice(Integer id) throws SQLException {
+    public void deletePrice(Integer id) {
         price.delete(id);
     }
 
     @Override
-    public void findAllStation() throws SQLException {
+    public void findAllStation() {
         station.findAll();
     }
 
     @Override
-    public void findStationById(Integer id) throws SQLException {
+    public void findStationById(Integer id) {
         station.findById(id);
     }
 
     @Override
-    public void createStation(Integer numberOfPanels, String address, Integer timeOfUsage) throws SQLException {
-        station.create(numberOfPanels, address, timeOfUsage);
+    public void createStation(StationEntity newItem) {
+        station.create(newItem);
     }
 
     @Override
-    public void updateStation(Integer id, Integer numberOfPanels, String address, Integer timeOfUsage) throws SQLException {
-        station.update(id, numberOfPanels, address, timeOfUsage);
+    public void updateStation(Integer id, StationEntity newItem) {
+        station.update(id, newItem);
     }
 
     @Override
-    public void deleteStation(Integer id) throws SQLException {
+    public void deleteStation(Integer id) {
         station.delete(id);
     }
 
     @Override
-    public void findAllOwnerHasStation() throws SQLException {
+    public void findAllOwnerHasStation() {
         ownerHasStation.findAll();
     }
 
     @Override
-    public void findOwnerHasStationById(Integer ownerId, Integer stationId) throws SQLException {
+    public void findOwnerHasStationById(Integer ownerId, Integer stationId) {
         ownerHasStation.findById(ownerId, stationId);
     }
 
     @Override
-    public void createOwnerHasStation(Integer ownerId, Integer stationId) throws SQLException {
-        ownerHasStation.create(ownerId, stationId);
+    public void createOwnerHasStation(OwnerHasStationEntity newItem) {
+        ownerHasStation.create(newItem);
     }
 
     @Override
-    public void deleteOwnerHasStation(Integer ownerId, Integer stationId) throws SQLException {
+    public void deleteOwnerHasStation(Integer ownerId, Integer stationId) {
         ownerHasStation.delete(ownerId, stationId);
     }
 
     @Override
-    public void findAllStationHasHousehold() throws SQLException {
+    public void findAllStationHasHousehold() {
         stationHasHousehold.findAll();
     }
 
     @Override
-    public void findStationHasHouseholdById(Integer stationId, Integer householdId) throws SQLException {
+    public void findStationHasHouseholdById(Integer stationId, Integer householdId) {
         stationHasHousehold.findById(stationId, householdId);
     }
 
     @Override
-    public void createStationHasHousehold(Integer stationId, Integer householdId) throws SQLException {
-        stationHasHousehold.create(stationId, householdId);
+    public void createStationHasHousehold(StationHasHouseholdEntity newItem) {
+        stationHasHousehold.create(newItem);
     }
 
     @Override
-    public void deleteStationHasHousehold(Integer stationId, Integer householdId) throws SQLException {
+    public void deleteStationHasHousehold(Integer stationId, Integer householdId) {
         stationHasHousehold.delete(stationId, householdId);
     }
 }

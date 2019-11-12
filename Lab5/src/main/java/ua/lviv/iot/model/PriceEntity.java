@@ -2,6 +2,8 @@ package ua.lviv.iot.model;
 
 import javax.persistence.*;
 import java.sql.Time;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -11,9 +13,12 @@ public class PriceEntity {
     private int value;
     private Time timeOfPriceBegin;
     private Time timeOfPriceEnd;
+    private List<OutputEntity> outputs = new LinkedList<>();
 
-    public PriceEntity(int id, int value, Time timeOfPriceBegin, Time timeOfPriceEnd) {
-        this.id = id;
+    public PriceEntity() {
+    }
+
+    public PriceEntity(int value, Time timeOfPriceBegin, Time timeOfPriceEnd) {
         this.value = value;
         this.timeOfPriceBegin = timeOfPriceBegin;
         this.timeOfPriceEnd = timeOfPriceEnd;
@@ -39,12 +44,12 @@ public class PriceEntity {
         this.value = value;
     }
 
+    @Basic
+    @Column(name = "time_of_price_begin")
     public Time getTimeOfPriceBegin() {
         return timeOfPriceBegin;
     }
 
-    @Basic
-    @Column(name = "time_of_price_begin")
     public void setTimeOfPriceBegin(Time timeOfPriceBegin) {
         this.timeOfPriceBegin = timeOfPriceBegin;
     }
@@ -62,16 +67,16 @@ public class PriceEntity {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof PriceEntity)) return false;
+        if (o == null || getClass() != o.getClass()) return false;
         PriceEntity that = (PriceEntity) o;
-        return getId() == that.getId() &&
-                getValue() == that.getValue() &&
-                getTimeOfPriceBegin().equals(that.getTimeOfPriceBegin()) &&
-                getTimeOfPriceEnd().equals(that.getTimeOfPriceEnd());
+        return id == that.id &&
+                value == that.value &&
+                timeOfPriceBegin.equals(that.timeOfPriceBegin) &&
+                timeOfPriceEnd.equals(that.timeOfPriceEnd);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(), getValue(), getTimeOfPriceBegin(), getTimeOfPriceEnd());
+        return Objects.hash(id, value, timeOfPriceBegin, timeOfPriceEnd);
     }
 }

@@ -10,6 +10,14 @@ public class OwnerHasStationEntity {
     private int ownerId;
     private int stationId;
 
+    public OwnerHasStationEntity() {
+    }
+
+    public OwnerHasStationEntity(int ownerId, int stationId) {
+        this.ownerId = ownerId;
+        this.stationId = stationId;
+    }
+
     @Id
     @Column(name = "owner_id")
     public int getOwnerId() {

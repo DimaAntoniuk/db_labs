@@ -20,9 +20,7 @@ public class MyView {
     public void show() throws SQLException {
         String menuKey;
         do {
-            System.out.println("Press ENTER key to continue...");
             new Scanner(System.in).nextLine();
-
             outputMenu();
             System.out.print("\nPlease, select menu point: ");
             menuKey = new Scanner(System.in).nextLine().toUpperCase();

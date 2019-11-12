@@ -1,8 +1,9 @@
 package ua.lviv.iot.model;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
-public class OwnerHasStationEntityPK {
+public class OwnerHasStationEntityPK implements Serializable {
     private int ownerId;
     private int stationId;
 
@@ -15,8 +16,8 @@ public class OwnerHasStationEntityPK {
         this.stationId = stationId;
     }
 
-    @Id
     @Column(name = "owner_id")
+    @Id
     public int getOwnerId() {
         return ownerId;
     }
@@ -25,8 +26,8 @@ public class OwnerHasStationEntityPK {
         this.ownerId = ownerId;
     }
 
-    @Id
     @Column(name = "station_id")
+    @Id
     public int getStationId() {
         return stationId;
     }

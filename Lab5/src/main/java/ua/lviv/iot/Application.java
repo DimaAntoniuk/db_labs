@@ -9,6 +9,8 @@ public class Application {
             new MyView().show();
         } catch (Exception e) {
             System.out.println("Exception: " + e);
+        } finally {
+            System.exit(0);
         }
     }
 }
