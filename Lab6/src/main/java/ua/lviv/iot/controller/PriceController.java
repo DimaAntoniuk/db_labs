@@ -26,20 +26,20 @@ public class PriceController implements Controller<Price> {
     }
 
     @Override
-    @GetMapping("/price")
+    @PostMapping("/price")
     public void create(@RequestBody Price price) {
         priceService.create(price);
     }
 
     @Override
-    @GetMapping("/price/{id}")
+    @PutMapping("/price/{id}")
     public void update(@PathVariable Integer id, @RequestBody Price price) {
         priceService.update(id, price);
     }
 
     @Override
-    @GetMapping("/price/{id}")
-    public void delete(Integer id) {
+    @DeleteMapping("/price/{id}")
+    public void delete(@PathVariable Integer id) {
 
     }
 }

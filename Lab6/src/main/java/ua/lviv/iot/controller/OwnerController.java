@@ -27,19 +27,19 @@ public class OwnerController implements Controller<Owner> {
     }
 
     @Override
-    @GetMapping("/owner")
+    @PostMapping("/owner")
     public void create(@RequestBody Owner owner) {
         ownerService.create(owner);
     }
 
     @Override
-    @GetMapping("/owner/{id}")
+    @PutMapping("/owner/{id}")
     public void update(@PathVariable Integer id, @RequestBody Owner owner) {
         ownerService.update(id, owner);
     }
 
     @Override
-    @GetMapping("/owner/{id}")
+    @DeleteMapping("/owner/{id}")
     public void delete(@PathVariable Integer id) {
         ownerService.delete(id);
     }

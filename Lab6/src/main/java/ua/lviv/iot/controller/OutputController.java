@@ -26,19 +26,19 @@ public class OutputController implements Controller<Output> {
     }
 
     @Override
-    @GetMapping("/output")
+    @PostMapping("/output")
     public void create(@RequestBody Output output) {
         outputService.create(output);
     }
 
     @Override
-    @GetMapping("/output/{id}")
+    @PutMapping("/output/{id}")
     public void update(@PathVariable Integer id, @RequestBody Output output) {
         outputService.update(id, output);
     }
 
     @Override
-    @GetMapping("/output/{id}")
+    @DeleteMapping("/output/{id}")
     public void delete(@PathVariable Integer id) {
         outputService.delete(id);
     }

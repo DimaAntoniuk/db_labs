@@ -26,19 +26,19 @@ public class StationController implements Controller<Station> {
     }
 
     @Override
-    @GetMapping("/station")
+    @PostMapping("/station")
     public void create(@RequestBody Station station) {
         stationService.create(station);
     }
 
     @Override
-    @GetMapping("station/{id}")
+    @PutMapping("station/{id}")
     public void update(@PathVariable Integer id, @RequestBody Station station) {
         stationService.update(id, station);
     }
 
     @Override
-    @GetMapping("station/{id}")
+    @DeleteMapping("station/{id}")
     public void delete(@PathVariable Integer id) {
         stationService.delete(id);
     }

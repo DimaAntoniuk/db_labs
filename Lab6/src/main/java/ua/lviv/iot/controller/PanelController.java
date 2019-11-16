@@ -26,19 +26,19 @@ public class PanelController implements Controller<Panel> {
     }
 
     @Override
-    @GetMapping("/panel")
+    @PostMapping("/panel")
     public void create(@RequestBody Panel panel) {
         panelService.create(panel);
     }
 
     @Override
-    @GetMapping("/panel/{id}")
+    @PutMapping("/panel/{id}")
     public void update(@PathVariable Integer id, @RequestBody Panel panel) {
         panelService.update(id, panel);
     }
 
     @Override
-    @GetMapping("/panel/{id}")
+    @DeleteMapping("/panel/{id}")
     public void delete(@PathVariable Integer id) {
         panelService.delete(id);
     }

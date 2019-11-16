@@ -26,19 +26,19 @@ public class HouseholdController implements Controller<Household> {
     }
 
     @Override
-    @GetMapping("household")
+    @PostMapping("household")
     public void create(@RequestBody Household household) {
         householdService.create(household);
     }
 
     @Override
-    @GetMapping("/household/{id}")
+    @PutMapping("/household/{id}")
     public void update(@PathVariable Integer id, @RequestBody Household household) {
         householdService.update(id, household);
     }
 
     @Override
-    @GetMapping("/household/{id}")
+    @DeleteMapping("/household/{id}")
     public void delete(@PathVariable Integer id) {
         householdService.delete(id);
     }
