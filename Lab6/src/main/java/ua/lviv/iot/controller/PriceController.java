@@ -1,13 +1,14 @@
 package ua.lviv.iot.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 import ua.lviv.iot.model.Price;
 import ua.lviv.iot.service.PriceService;
 
 import java.util.List;
 
 @RestController
-@RestMapping("/antoniuk_db")
+@RequestMapping("/antoniuk_db")
 public class PriceController implements Controller<Price> {
     @Autowired
     PriceService priceService;

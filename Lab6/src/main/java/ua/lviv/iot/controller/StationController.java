@@ -1,12 +1,14 @@
 package ua.lviv.iot.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 import ua.lviv.iot.model.Station;
+import ua.lviv.iot.service.StationService;
 
 import java.util.List;
 
 @RestController
-@RestMapping("/antoniuk_db")
+@RequestMapping("/antoniuk_db")
 public class StationController implements Controller<Station> {
     @Autowired
     StationService stationService;
@@ -18,7 +20,7 @@ public class StationController implements Controller<Station> {
     }
 
     @Override
-    @GetMaping("/station/{id}")
+    @GetMapping("/station/{id}")
     public Station getById(@PathVariable Integer id) {
         return stationService.getById(id);
     }

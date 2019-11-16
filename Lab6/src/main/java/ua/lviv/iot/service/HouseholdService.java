@@ -2,6 +2,7 @@ package ua.lviv.iot.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import ua.lviv.iot.model.Household;
 import ua.lviv.iot.repository.HouseholdRepository;
 
@@ -34,7 +35,7 @@ public class HouseholdService {
     }
 
     @Transactional
-    public void delete(INteger id) {
+    public void delete(Integer id) {
         if(householdRepository.findById(id).isPresent()) {
             householdRepository.deleteById(id);
         }

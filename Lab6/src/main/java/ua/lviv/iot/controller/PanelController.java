@@ -1,13 +1,14 @@
 package ua.lviv.iot.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 import ua.lviv.iot.model.Panel;
 import ua.lviv.iot.service.PanelService;
 
 import java.util.List;
 
 @RestController
-@RestMapping("/antoniuk_db")
+@RequestMapping("/antoniuk_db")
 public class PanelController implements Controller<Panel> {
     @Autowired
     PanelService panelService;
@@ -33,7 +34,7 @@ public class PanelController implements Controller<Panel> {
     @Override
     @GetMapping("/panel/{id}")
     public void update(@PathVariable Integer id, @RequestBody Panel panel) {
-        paneelService.update(id, panel);
+        panelService.update(id, panel);
     }
 
     @Override
