@@ -13,20 +13,12 @@ import java.util.List;
 public class Household {
     private int id;
     private String name;
-    private List<Station> stations = new LinkedList<>();
 
     public Household() {
     }
 
     public Household(String name) {
         this.name = name;
-
-        Session session = new Configuration().configure().buildSessionFactory().openSession();
-        Query query = session.createQuery("SELECT stationId FROM StationHasHouseholdEntity AS shh WHERE shh.householdId = :id");
-        query.setParameter("id", this.id);
-        stations = query.list();
-
-        session.close();
     }
 
     @Id
@@ -47,15 +39,6 @@ public class Household {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    @ManyToMany(mappedBy = "households")
-    public List<Station> getStations() {
-        return stations;
-    }
-
-    public void setStations(List<Station> stations) {
-        this.stations = stations;
     }
 
     @Override

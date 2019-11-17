@@ -16,8 +16,6 @@ public class Station {
     private int numberOfPanels;
     private String address;
     private int timeOfUsage;
-    private List<Owner> owners = new LinkedList<>();
-    private List<Household> households = new LinkedList<>();
 
     public Station() {
     }
@@ -26,17 +24,6 @@ public class Station {
         this.numberOfPanels = numberOfPanels;
         this.address = address;
         this.timeOfUsage = timeOfUsage;
-
-        Session session = new Configuration().configure().buildSessionFactory().openSession();
-        Query query1 = session.createQuery("SELECT ownerId FROM OwnerHasStationEntity AS ohs WHERE ohs.stationId = :id");
-        query1.setParameter("id", this.id);
-        owners = query1.list();
-
-        Query query2 = session.createQuery("SELECT householdId FROM StationHasHouseholdEntity AS shh WHERE shh.stationId = :id");
-        query2.setParameter("id", this.id);
-        households = query2.list();
-
-        session.close();
     }
 
     @Id
@@ -80,33 +67,6 @@ public class Station {
         this.timeOfUsage = timeOfUsage;
     }
 
-    @ManyToMany(cascade = { CascadeType.ALL })
-    @JoinTable(
-            name = "owner_has_station",
-            joinColumns = { @JoinColumn(name = "station_id") },
-            inverseJoinColumns = { @JoinColumn(name = "owner_id") }
-    )
-    public List<Owner> getOwners() {
-        return owners;
-    }
-
-    public void setOwners(List<Owner> owners) {
-        this.owners = owners;
-    }
-
-    @ManyToMany(cascade = { CascadeType.ALL })
-    @JoinTable(
-            name = "station_has_household",
-            joinColumns = { @JoinColumn(name = "station_id") },
-            inverseJoinColumns = { @JoinColumn(name = "household_id") }
-    )
-    public List<Household> getHouseholds() {
-        return households;
-    }
-
-    public void setHouseholds(List<Household> households) {
-        this.households = households;
-    }
 
     @Override
     public boolean equals(Object o) {
@@ -115,12 +75,11 @@ public class Station {
         Station that = (Station) o;
         return numberOfPanels == that.numberOfPanels &&
                 timeOfUsage == that.timeOfUsage &&
-                address.equals(that.address) &&
-                owners.equals(that.owners);
+                address.equals(that.address);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(numberOfPanels, address, timeOfUsage, owners);
+        return Objects.hash(numberOfPanels, address, timeOfUsage);
     }
 }

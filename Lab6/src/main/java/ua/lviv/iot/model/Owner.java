@@ -14,7 +14,6 @@ public class Owner {
     private int id;
     private String firstName;
     private String lastName;
-    private List<Station> stations = new LinkedList<>();
 
     public Owner() {
     }
@@ -52,15 +51,6 @@ public class Owner {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
-    }
-
-    @ManyToMany(mappedBy = "owners")
-    public List<Station> getStations() {
-        return this.stations;
-    }
-
-    public void setStations(List<Station> stations) {
-        this.stations = stations;
     }
 
     @Override

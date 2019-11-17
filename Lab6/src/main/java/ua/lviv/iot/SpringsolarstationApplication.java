@@ -1,4 +1,4 @@
-package ua.lviv.iot.springsolarstation;
+package ua.lviv.iot;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
