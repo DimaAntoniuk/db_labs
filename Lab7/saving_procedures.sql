@@ -20,8 +20,6 @@ BEGIN
 END//
 DELIMITER ;
 
-CALL ParInsertEmployees("Tyree ", "Padilla", "X", "4303120119", "222222", "1990-10-27", 9, 10);
-
 DELIMITER //
 CREATE PROCEDURE InsertMedicinesHasInfluenceArea
 (
@@ -36,48 +34,44 @@ BEGIN
 END//
 DELIMITER ;
 
-CALL InsertMedicinesHasInfluenceArea(1, 4);
-
-/*
 DELIMITER //
-CREATE PROCEDURE EmployeeCreateDB()
+CREATE PROCEDURE EmployeesCreateDB()
 BEGIN
-	DECLARE Surname varchar(45) DEFAULT FALSE;
-    DECLARE Name varchar(45) DEFAULT FALSE;
-	DECLARE SQLString nvarchar(255) DEFAULT FALSE;
+	DECLARE done int DEFAULT FALSE;
+	DECLARE employee_surname varchar(45) DEFAULT FALSE;
+    DECLARE employee_name varchar(45) DEFAULT FALSE;
+	DECLARE pattern nvarchar(255) DEFAULT FALSE;
 	DECLARE rand int DEFAULT FALSE;
     DECLARE N int DEFAULT FALSE;
 
-	DECLARE MyCursor CURSOR FOR SELECT Surname, Name FROM employee;
-
+	DECLARE MyCursor CURSOR FOR SELECT `surname`, `name` FROM employees;
+	DECLARE CONTINUE HANDLER FOR NOT FOUND SET done = true;
+    
 	OPEN MyCursor;
-	
-	FETCH NEXT FROM MyCursor INTO Name, Surname; 
-
-	WHILE @@FETCH_STATUS=0 DO
-    BEGIN
+    
+	MyLoop: LOOP
+		FETCH MyCursor INTO employee_surname, employee_name;
+		IF done=true THEN LEAVE myLoop;
+		END IF;
 		SET rand = RAND()*8 + 1;
 		SET N = 1;
-		SET SQLString='CREATE TABLE ['+Surname+Name+'] (';
+		SET pattern='CREATE TABLE ['+ employee_surname + employee_name +'] (';
 		
 		WHILE N<=rand DO
 		BEGIN
-			SET SQLString = SQLString + 'Col'+CAST(N AS nchar(1))+' int';
+			SET pattern = pattern + 'Col'+ CAST(N AS nchar(1)) +' int';
 			IF N<rand THEN
-				SET SQLString = SQLString + ',';
+				SET pattern = pattern + ',';
             END IF;
 			SET N = N + 1;
-		END
+		END;
+        END WHILE;
 
-		SET SQLString = SQLString+ ')';
+		SET pattern = pattern + ')';
 
-		EXECUTE SQLString;
-		FETCH NEXT FROM MyCursor INTO Name, Surname;
-	END
+		EXECUTE pattern;
+    END LOOP;
 
 	CLOSE MyCursor;
 	DEALLOCATE PREPARE MyCursor;
 END;
-END WHILE;
-
-*/

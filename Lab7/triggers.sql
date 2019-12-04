@@ -1,5 +1,23 @@
 USE antoniuk_1_21;
 
+DROP TRIGGER IF EXISTS PharmacyFK_ManyToStreetInsert;
+DROP TRIGGER IF EXISTS PharmacyFK_ManyToStreetUpdate;
+DROP TRIGGER IF EXISTS PharmacyFK_ManyToStreetDelete;
+DROP TRIGGER IF EXISTS EmployeesFK_ManyToPositionInsert;
+DROP TRIGGER IF EXISTS EmployeesFK_ManyToPositionUpdate;
+DROP TRIGGER IF EXISTS EmployeesFK_ManyToPositionDelete;
+DROP TRIGGER IF EXISTS MedicinesHasInfluenceAreaInsert;
+DROP TRIGGER IF EXISTS MedicinesHasInfluenceAreaUpdate;
+DROP TRIGGER IF EXISTS PharmacyHasMedicinesInsert;
+DROP TRIGGER IF EXISTS PharmacyHasMedicinesUpdate;
+DROP TRIGGER IF EXISTS PositionNotUpdate;
+DROP TRIGGER IF EXISTS EmployeesCheckInsert;
+DROP TRIGGER IF EXISTS EmployeesCheckUpdate;
+DROP TRIGGER IF EXISTS MedicinesCheckInsert;
+DROP TRIGGER IF EXISTS MedicinesCheckUpdate;
+
+
+
 DELIMITER //
 CREATE TRIGGER PharmacyFK_ManyToStreetInsert
 AFTER INSERT
@@ -55,7 +73,7 @@ CREATE TRIGGER EmployeesFK_ManyToPositionDelete
 AFTER DELETE
 ON antoniuk_1_21.position FOR EACH ROW
 BEGIN
-	IF new.`id` IN (SELECT `position_id` FROM employees) THEN
+	IF old.`id` IN (SELECT `position_id` FROM employees) THEN
 		SIGNAL SQLSTATE "45000"
 		SET MESSAGE_TEXT='DELETE Error: FK failure';
 	END IF;
@@ -114,9 +132,9 @@ BEGIN
 		SET MESSAGE_TEXT='Not avalible to update position';
 END//
 
-CREATE TRIGGER EmployeeCheckInsert
+CREATE TRIGGER EmployeesCheckInsert
 AFTER INSERT
-ON employee FOR EACH ROW
+ON employees FOR EACH ROW
 BEGIN
 	IF new.identity_number LIKE '%00' THEN
 		SIGNAL SQLSTATE "45000"

@@ -1,20 +1,22 @@
 USE antoniuk_1_21;
 
+DROP FUNCTION IF EXISTS FuncEmployeeMINExperience;
+DROP FUNCTION IF EXISTS FuncEmployeePharmacy;
 
 DELIMITER //
 CREATE FUNCTION FuncEmployeeMINExperience()
 RETURNS int
 BEGIN
-	RETURN (SELECT MIN(work_experience) FROM employees);
+	RETURN (SELECT MIN(work_experiance) FROM employees);
 END//
 
-SELECT * FROM employee WHERE work_experience = dbo.FuncEmployeeMINExperience()//
+SELECT * FROM employees WHERE work_experiance = FuncEmployeeMINExperience()//
 
 CREATE FUNCTION FuncEmployeePharmacy(id int)
-RETURNS nvarchar(25)
+RETURNS LONGTEXT
 BEGIN
-	RETURN (SELECT `name` + ' ' + `number` FROM pharmacy WHERE pharmacy.id=id);
+	RETURN (SELECT CONCAT(`name`,' ',`number`) FROM pharmacy WHERE pharmacy.id=id);
 END//
 DELIMITER ;
 
-SELECT *, dbo.FuncEmployeeIDPharmacy(id) AS pharmacy  FROM employee
+SELECT *, FuncEmployeePharmacy(id) AS pharmacy  FROM employees
