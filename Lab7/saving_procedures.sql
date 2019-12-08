@@ -34,44 +34,48 @@ BEGIN
 END//
 DELIMITER ;
 
+
 DELIMITER //
 CREATE PROCEDURE EmployeesCreateDB()
 BEGIN
 	DECLARE done int DEFAULT FALSE;
-	DECLARE employee_surname varchar(45) DEFAULT FALSE;
-    DECLARE employee_name varchar(45) DEFAULT FALSE;
-	DECLARE pattern nvarchar(255) DEFAULT FALSE;
+	DECLARE employee_surname LONGTEXT DEFAULT FALSE;
+    DECLARE employee_name LONGTEXT DEFAULT FALSE;
+	DECLARE pattern LONGTEXT DEFAULT FALSE;
 	DECLARE rand int DEFAULT FALSE;
     DECLARE N int DEFAULT FALSE;
+    DECLARE myquery LONGTEXT DEFAULT FALSE;
 
-	DECLARE MyCursor CURSOR FOR SELECT `surname`, `name` FROM employees;
+	DECLARE MyCursor CURSOR FOR SELECT `surname` FROM employees;
 	DECLARE CONTINUE HANDLER FOR NOT FOUND SET done = true;
     
 	OPEN MyCursor;
     
-	MyLoop: LOOP
-		FETCH MyCursor INTO employee_surname, employee_name;
-		IF done=true THEN LEAVE myLoop;
-		END IF;
-		SET rand = RAND()*8 + 1;
-		SET N = 1;
-		SET pattern='CREATE TABLE ['+ employee_surname + employee_name +'] (';
-		
-		WHILE N<=rand DO
+	 WHILE done=false DO
+     BEGIN
+		FETCH MyCursor INTO employee_surname;
+		SET @rand = RAND()*8 + 1;
+		SET @N = 1;
+		SET @pattern=CONCAT('CREATE TABLE IF NOT EXISTS `', employee_surname, '` ( ');
+		WHILE @N<=@rand DO
 		BEGIN
-			SET pattern = pattern + 'Col'+ CAST(N AS nchar(1)) +' int';
-			IF N<rand THEN
-				SET pattern = pattern + ',';
+			SET @pattern = CONCAT(@pattern, '`', CAST(@N AS NCHAR),'` INT');
+			IF @N<@rand-1 THEN
+				SET @pattern = CONCAT(@pattern, ',');
             END IF;
-			SET N = N + 1;
+			SET @N = @N + 1;
 		END;
         END WHILE;
-
-		SET pattern = pattern + ')';
-
-		EXECUTE pattern;
-    END LOOP;
-
+		
+		SET @pattern = CONCAT(@pattern, ')');
+        SELECT @pattern;
+		PREPARE myquery FROM @pattern;
+		EXECUTE myquery;
+		DEALLOCATE PREPARE myquery;
+     END;
+     END WHILE;
 	CLOSE MyCursor;
-	DEALLOCATE PREPARE MyCursor;
-END;
+END//
+DELIMITER ;
+
+CALL EmployeesCreateDB()
